@@ -10,5 +10,11 @@ class YemeklerDataSource(var ydao: YemeklerDao) {
         withContext(Dispatchers.IO){
             return@withContext ydao.yemekleriYukle().yemekler
         }
+
+    suspend fun sepetEkle(yemek_adi: String,
+                          yemek_resim_adi: String,
+                          yemek_fiyat: Int,
+                          yemek_siparis_adet: Int,
+                          kullanici_adi: String) = ydao.sepetEkle(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
 }
 

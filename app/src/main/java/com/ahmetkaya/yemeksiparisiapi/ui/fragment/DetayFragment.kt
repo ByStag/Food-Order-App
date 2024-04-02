@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.ahmetkaya.yemeksiparisiapi.R
 import com.ahmetkaya.yemeksiparisiapi.databinding.FragmentDetayBinding
@@ -26,6 +27,7 @@ class DetayFragment : Fragment() {
 
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${yemek.yemek_resim_adi}"
         Glide.with(this).load(url).override(500,700).into(binding.iVDetayResim)
+
 
         return view
     }

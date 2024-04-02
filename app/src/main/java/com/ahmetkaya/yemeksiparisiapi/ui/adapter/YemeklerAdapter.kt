@@ -26,7 +26,7 @@ class YemeklerAdapter(var mContext: Context, var yemekListesi: List<Yemekler>)
         val tb = holder.tasarim
 
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${yemek.yemek_resim_adi}"
-        Glide.with(mContext).load(url).override(400,550).into(tb.iVCardResim)
+        Glide.with(mContext).load(url).override(490,490).into(tb.iVCardResim)
 
         tb.tVCardFiyat.text = "${yemek.yemek_fiyat} ₺"
         tb.tVCardYemekAdi.text = "${yemek.yemek_adi}"

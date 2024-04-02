@@ -1,0 +1,5 @@
+package com.ahmetkaya.yemeksiparisiapi.data.entity
+
+data class CRUDCevap(var success: Int,
+                     var message: String) {
+}
