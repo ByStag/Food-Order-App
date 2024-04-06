@@ -3,6 +3,7 @@ package com.ahmetkaya.yemeksiparisiapi.retrofit
 import com.ahmetkaya.yemeksiparisiapi.data.entity.CRUDCevap
 import com.ahmetkaya.yemeksiparisiapi.data.entity.YemeklerCevap
 import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 
@@ -14,6 +15,7 @@ interface YemeklerDao {
     suspend fun yemekleriYukle() : YemeklerCevap
 
     @POST("yemekler/sepeteYemekEkle.php")
+    @FormUrlEncoded
     suspend fun sepetEkle(@Field("yemek_adi") yemek_adi: String,
                           @Field("yemek_resim_adi") yemek_resim_adi: String,
                           @Field("yemek_fiyat") yemek_fiyat: Int,
