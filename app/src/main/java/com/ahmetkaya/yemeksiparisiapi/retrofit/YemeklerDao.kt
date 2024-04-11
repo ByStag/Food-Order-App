@@ -1,6 +1,7 @@
 package com.ahmetkaya.yemeksiparisiapi.retrofit
 
 import com.ahmetkaya.yemeksiparisiapi.data.entity.CRUDCevap
+import com.ahmetkaya.yemeksiparisiapi.data.entity.SepetCevap
 import com.ahmetkaya.yemeksiparisiapi.data.entity.YemeklerCevap
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -21,4 +22,9 @@ interface YemeklerDao {
                           @Field("yemek_fiyat") yemek_fiyat: Int,
                           @Field("yemek_siparis_adet") yemek_siparis_adet: Int,
                           @Field("kullanici_adi") kullanici_adi: String) : CRUDCevap
+
+    @POST("yemekler/sepettekiYemekleriGetir.php")
+    @FormUrlEncoded
+    suspend fun yemekleriSepeteYukle(@Field("kullanici_adi") kullanici_adi: String) : SepetCevap
 }
+

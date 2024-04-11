@@ -1,6 +1,7 @@
 package com.ahmetkaya.yemeksiparisiapi.data.repo
 
 import com.ahmetkaya.yemeksiparisiapi.data.datasource.YemeklerDataSource
+import com.ahmetkaya.yemeksiparisiapi.data.entity.Sepet
 import com.ahmetkaya.yemeksiparisiapi.data.entity.Yemekler
 
 class YemeklerRepository(var yds : YemeklerDataSource) {
@@ -13,5 +14,7 @@ class YemeklerRepository(var yds : YemeklerDataSource) {
                           yemek_fiyat: Int,
                           yemek_siparis_adet: Int,
                           kullanici_adi: String) = yds.sepetEkle(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
+
+    suspend fun yemekleriSepeteYukle(kullanici_adi: String) : List<Sepet> = yds.yemekleriSepeteYukle(kullanici_adi)
 }
 
