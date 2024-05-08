@@ -10,6 +10,7 @@ import com.ahmetkaya.yemeksiparisiapi.data.entity.Yemekler
 import com.ahmetkaya.yemeksiparisiapi.databinding.SepetCardTasarimBinding
 import com.ahmetkaya.yemeksiparisiapi.ui.viewmodel.SepetViewModel
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 
 class SepetAdapter(var mContext: Context, var sepetListesi: List<Sepet>, var viewModel: SepetViewModel)
     : RecyclerView.Adapter<SepetAdapter.SepetCardTutucu>(){
@@ -34,7 +35,13 @@ class SepetAdapter(var mContext: Context, var sepetListesi: List<Sepet>, var vie
         tb.tVCardToplamFiyat.text = sepetToplamFiyat
         tb.tVAdet.text = "${sepetKart.yemek_siparis_adet}"
 
-
+        tb.iVYemekSil.setOnClickListener {
+            Snackbar.make(it, "${sepetKart.yemek_adi} Silinsin Mi?", Snackbar.LENGTH_LONG)
+                .setAction("Evet"){
+                    viewModel.yemekleriSil(sepetKart.sepet_yemek_id,"kaya")
+                    Snackbar.make(it, "${sepetKart.yemek_adi} Silindi!", Snackbar.LENGTH_SHORT).show()
+                }.show()
+        }
     }
 
     override fun getItemCount(): Int {

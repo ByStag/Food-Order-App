@@ -20,7 +20,6 @@ class SepetViewModel @Inject constructor(var yrepo: YemeklerRepository): ViewMod
     }
 
 
-
     fun yemekleriSepeteYukle(kullanici_adi: String){
         CoroutineScope(Dispatchers.Main).launch {
             try {
@@ -38,5 +37,17 @@ class SepetViewModel @Inject constructor(var yrepo: YemeklerRepository): ViewMod
         val toplam = sepetListesi.value?.sumOf { it.yemek_fiyat * it.yemek_siparis_adet }
         toplamFiyat.value = toplam ?: 0
     }
+
+    fun yemekleriSil(sepet_yemek_id: Int, kullanici_adi: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+           sepetListesi.value?.forEach {
+               if (it.sepet_yemek_id == sepet_yemek_id){
+                   yrepo.yemekleriSil(it.sepet_yemek_id, kullanici_adi)
+               }
+           }
+            yemekleriSepeteYukle("kaya")
+        }
+    }
+
 }
 

@@ -7,6 +7,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import javax.annotation.meta.TypeQualifierDefault
 
 interface YemeklerDao {
     //http://kasimadalan.pe.hu/yemekler/tumYemekleriGetir.php
@@ -26,5 +27,10 @@ interface YemeklerDao {
     @POST("yemekler/sepettekiYemekleriGetir.php")
     @FormUrlEncoded
     suspend fun yemekleriSepeteYukle(@Field("kullanici_adi") kullanici_adi: String) : SepetCevap
+
+    @POST("yemekler/sepettenYemekSil.php")
+    @FormUrlEncoded
+    suspend fun yemekleriSil(@Field("sepet_yemek_id") sepet_yemek_id: Int,
+                             @Field("kullanici_adi") kullanici_adi: String) : CRUDCevap
 }
 

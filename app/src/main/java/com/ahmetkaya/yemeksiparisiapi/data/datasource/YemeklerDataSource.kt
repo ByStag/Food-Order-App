@@ -22,5 +22,7 @@ class YemeklerDataSource(var ydao: YemeklerDao) {
         withContext(Dispatchers.IO){
             return@withContext ydao.yemekleriSepeteYukle(kullanici_adi).sepet_yemekler
         }
+
+    suspend fun yemekleriSil(sepet_yemek_id: Int, kullanici_adi: String) = ydao.yemekleriSil(sepet_yemek_id,kullanici_adi)
 }
 
