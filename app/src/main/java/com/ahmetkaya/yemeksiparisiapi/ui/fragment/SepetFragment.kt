@@ -11,6 +11,7 @@ import com.ahmetkaya.yemeksiparisiapi.databinding.FragmentSepetBinding
 import com.ahmetkaya.yemeksiparisiapi.ui.adapter.SepetAdapter
 import com.ahmetkaya.yemeksiparisiapi.ui.adapter.YemeklerAdapter
 import com.ahmetkaya.yemeksiparisiapi.ui.viewmodel.SepetViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +31,28 @@ class SepetFragment : Fragment() {
 
         viewModel.yemekleriSepeteYukle("kaya") // Burada viewModel.yemekleriSepeteYukle("kaya") çağrısı
 
+        toplamSepetFiyat()
+        siparisVer()
+
         return view
+    }
+
+    fun toplamSepetFiyat(){
+        viewModel.toplamFiyat.observe(viewLifecycleOwner){
+            binding.tVToplamFiyatSepet.text = it.toString()
+            if(binding.tVToplamFiyatSepet.text.equals("0")){
+                binding.tVToplamFiyatSepet.text = "0"
+            }
+        }
+    }
+
+    fun siparisVer(){
+        binding.bSiparisVer.setOnClickListener {
+            Snackbar.make(it,"Siparişinizi Onaylayın", Snackbar.LENGTH_LONG)
+                .setAction("Onayla"){
+                    Snackbar.make(it,"Siparişiniz onaylandı 30-40 dk arasında gelecektir.", Snackbar.LENGTH_LONG).show()
+                }.show()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AnasayfaViewModel @Inject constructor(var yrepo : YemeklerRepository) : ViewModel(){
-    var yemekListesi = MutableLiveData<List<Yemekler>>()
+    var yemekListesi = MutableLiveData<List<Yemekler>?>()
 
     init {
         yemekleriYukle()
